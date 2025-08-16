@@ -22,7 +22,7 @@
   .image-box {
     width:180px;
     height:180px;
-    background-color: #d0d0d0; /* çerçeve rengi */
+    background-color: #d0d0d0;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -31,13 +31,7 @@
     overflow:hidden;
     border-radius:4px;
 }
-.image-box img {
-    max-width:95%;
-    max-height:95%;
-    object-fit:contain; /* çerçeve içinde sığdır */
-}
-
-  .image-box img { width:100%; height:100%; object-fit:cover; display:block; }
+.image-box img { width:100%; height:100%; object-fit:cover; display:block; }
   .caption { font-size:14px; color:#111; text-align:center; margin-top:8px; font-family:"Merriweather", serif; }
   .section { margin-bottom:18px; }
   .section h3 { margin:0 0 8px 0; font-family:"Merriweather", serif; font-size:16px; }
@@ -53,7 +47,7 @@
 <textarea id="json-input" placeholder="JSON veya metni buraya yapıştır..."></textarea>
 <br>
 <button id="update-btn">Güncelle</button>
-<button id="download-btn">Kartı İndir</button>
+<button id="download-btn">Kartı İndir (HQ)</button>
 
 <div class="card" id="arc-card">
   <div class="logo">A R C</div>
@@ -149,12 +143,17 @@ document.addEventListener('paste', e => {
   }
 });
 
-// Kartı resim olarak indirme
+// Kartı resim olarak indirme (ultra yüksek kalite)
 document.getElementById('download-btn').addEventListener('click', () => {
-  html2canvas(document.getElementById('arc-card'), { backgroundColor:'#fafafa', scale:2 }).then(canvas => {
+  html2canvas(document.getElementById('arc-card'), { 
+    backgroundColor:'#fafafa', 
+    scale:4,       // Çözünürlük 4 kat artar
+    useCORS:true,  // Başka sitelerden resim kullanımı için
+    logging:true
+  }).then(canvas => {
     const link = document.createElement('a');
-    link.download = 'ARC_Card.png';
-    link.href = canvas.toDataURL('image/png',1.0);
+    link.download = 'ARC_Card_HQ.png';
+    link.href = canvas.toDataURL('image/png',1.0); // Kayıpsız PNG
     link.click();
   });
 });
