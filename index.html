@@ -3,42 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ARC Card - Dynamic</title>
+<title>ARC Card - HQ</title>
 <style>
-  body { background:#f3f3f3; padding:20px; font-family: "Open Sans", Arial, sans-serif; }
-  .card { width: 750px; margin: 20px auto; background: #fafafa; border: 1px solid #d7d7d7; box-shadow: 0 4px 14px rgba(0,0,0,0.08); padding: 28px 32px; box-sizing:border-box; color:#222; }
-  .logo { text-align:center; font-family: "Merriweather", serif; font-size:52px; letter-spacing:8px; color:#111; margin-bottom:12px; }
-  .subtitle { text-align:center; font-size:16px; color:#444; margin-bottom:18px; font-weight:600; }
-  hr { border: none; border-top: 2px solid #ccc; margin: 10px 0 22px; }
-  .meta { display:flex; gap:20px; align-items:center; margin-bottom:20px; }
-  .meta .left { flex:1; }
-  .meta .right { width:200px; text-align:right; color:#555; font-weight:700; }
-  .field-title { font-weight:700; color:#222; margin-bottom:6px; font-size:15px; }
-  .field { margin-bottom:14px; font-size:15px; line-height:1.5; color:#222; }
-  .phen-type { color:#8b1b1b; font-weight:700; font-size:15px; }
-  .content { display:flex; gap:20px; align-items:flex-start; }
-  .text { flex:1; font-size:16px; line-height:1.6; color:#1a1a1a; }
-  .image-container { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
-  .image-box {
-    width:180px;
-    height:180px;
-    background-color: #d0d0d0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    position:relative;
-    overflow:hidden;
-    border-radius:4px;
+  body { background:#f3f3f3; padding:20px; font-family:"Open Sans", Arial, sans-serif; }
+  .card {
+    width: 750px;
+    margin: 20px auto;
+    background:#fafafa;
+    border:1px solid #d7d7d7;
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+    padding:30px 36px;
+    box-sizing:border-box;
+    color:#111;
   }
+  .logo { text-align:center; font-family:"Merriweather", serif; font-size:56px; letter-spacing:8px; margin-bottom:14px; }
+  .subtitle { text-align:center; font-size:18px; color:#333; margin-bottom:20px; font-weight:700; }
+  hr { border:none; border-top:2px solid #ccc; margin:12px 0 24px; }
+  .meta { display:flex; gap:20px; align-items:center; margin-bottom:22px; }
+  .meta .left { flex:1; }
+  .field-title { font-weight:700; color:#222; margin-bottom:6px; font-size:16px; }
+  .field { margin-bottom:16px; font-size:16px; line-height:1.65; color:#222; }
+  .phen-type { color:#8b1b1b; font-weight:700; font-size:16px; }
+  .content { display:flex; gap:24px; align-items:flex-start; }
+  .text { flex:1; font-size:17px; line-height:1.7; color:#1a1a1a; }
+  .section { margin-bottom:22px; }
+  .section h3 { margin:0 0 10px 0; font-family:"Merriweather", serif; font-size:18px; }
+  ul { margin:8px 0 16px 22px; font-size:16px; line-height:1.7; }
+  .image-container { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+  .image-box { width:180px; height:180px; background:#d0d0d0; display:flex; justify-content:center; align-items:center; cursor:pointer; overflow:hidden; border-radius:4px; }
   .image-box img { width:100%; height:100%; object-fit:cover; display:block; }
-  .caption { font-size:14px; color:#111; text-align:center; margin-top:8px; font-family:"Merriweather", serif; }
-  .section { margin-bottom:20px; }
-  .section h3 { margin:0 0 10px 0; font-family:"Merriweather", serif; font-size:17px; }
-  ul { margin:8px 0 14px 20px; font-size:16px; line-height:1.6; }
-  #json-input { width: 100%; height: 220px; font-family: monospace; font-size:14px; margin-bottom: 14px; }
-  #update-btn, #download-btn { padding: 10px 18px; font-size: 15px; cursor: pointer; margin-right: 10px; }
-  input[type=file] { display:none; }
+  .caption { font-size:15px; color:#111; text-align:center; margin-top:8px; font-family:"Merriweather", serif; }
+  #json-input { width:100%; height:220px; font-family:monospace; font-size:15px; margin-bottom:14px; }
+  #update-btn, #download-btn { padding:10px 18px; font-size:15px; cursor:pointer; margin-right:10px; }
+  input[type=file]{display:none;}
 </style>
 </head>
 <body>
@@ -64,7 +61,7 @@
     <div class="text" id="text-content">
       <div class="section">
         <h3>Tanım:</h3>
-        <p id="description">ARC-582 açıklaması daha anlaşılır ve okunaklı hâle getirildi. Metin boyutu artırıldı, satır yüksekliği yükseltildi.</p>
+        <p id="description">ARC-582 açıklaması daha okunaklı ve net hale getirildi. Metinler büyük, satır aralıkları geniş ve kolay okunabilir.</p>
       </div>
       <div class="section">
         <h3>Anormal Özellikleri:</h3>
@@ -109,9 +106,7 @@ document.getElementById('update-btn').addEventListener('click', () => {
     const containmentEl = document.getElementById('containment-list');
     containmentEl.innerHTML = '';
     (data.containment || []).forEach(c => { const li = document.createElement('li'); li.textContent = c; containmentEl.appendChild(li); });
-  } catch(e) {
-    alert('Geçersiz JSON formatı!');
-  }
+  } catch(e) { alert('Geçersiz JSON formatı!'); }
 });
 
 const imageBox = document.getElementById('image-box');
@@ -119,14 +114,9 @@ const imageInput = document.getElementById('image-input');
 imageBox.addEventListener('click', () => imageInput.click());
 imageInput.addEventListener('change', e => {
   const file = e.target.files[0];
-  if(file){
-    const reader = new FileReader();
-    reader.onload = evt => { document.getElementById('avatar').src = evt.target.result; }
-    reader.readAsDataURL(file);
-  }
+  if(file){ const reader = new FileReader(); reader.onload = evt => { document.getElementById('avatar').src = evt.target.result; }; reader.readAsDataURL(file); }
 });
-
-imageBox.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+imageBox.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect='copy'; });
 imageBox.addEventListener('drop', e => {
   e.preventDefault();
   const file = e.dataTransfer.files[0];
@@ -135,7 +125,7 @@ imageBox.addEventListener('drop', e => {
 document.addEventListener('paste', e => {
   const items = e.clipboardData.items;
   for(let i=0;i<items.length;i++){
-    if(items[i].kind === 'file'){
+    if(items[i].kind==='file'){
       const file = items[i].getAsFile();
       if(file){ const reader = new FileReader(); reader.onload = evt => { document.getElementById('avatar').src = evt.target.result; }; reader.readAsDataURL(file); }
     }
@@ -144,14 +134,14 @@ document.addEventListener('paste', e => {
 
 document.getElementById('download-btn').addEventListener('click', () => {
   html2canvas(document.getElementById('arc-card'), { 
-    backgroundColor:'#fafafa', 
-    scale:4,
+    backgroundColor:'#fafafa',
+    scale:5,       // ultra yüksek çözünürlük
     useCORS:true,
     logging:true
   }).then(canvas => {
     const link = document.createElement('a');
-    link.download = 'ARC_Card_HQ.png';
-    link.href = canvas.toDataURL('image/png',1.0);
+    link.download='ARC_Card_HQ.png';
+    link.href=canvas.toDataURL('image/png',1.0); // kayıpsız PNG
     link.click();
   });
 });
